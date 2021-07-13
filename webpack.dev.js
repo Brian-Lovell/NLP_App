@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
