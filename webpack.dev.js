@@ -1,6 +1,9 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path')
 const webpack = require('webpack')
+
+// Plugins
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   mode: 'development',
