@@ -1,7 +1,8 @@
 let path = require('path')
 const express = require('express')
 const app = express()
-const port = 2076
+const port = 8080
+const mockAPIResponse = require('./mockAPI.js')
 
 app.listen(port, () => {
     console.log(`Hello there at http://localhost:${port}!`)
