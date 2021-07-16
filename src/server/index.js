@@ -1,9 +1,12 @@
+const dotenv = require('dotenc')
+dotenv.config()
 let path = require('path')
 const express = require('express')
 const app = express()
+
 //API 
 let textapi = new meaning({
-    application_key: "your-key"
+    application_key: process.env.API_KEY
   });
 
 const mockAPIResponse = require('./mockAPI.js')
