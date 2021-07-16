@@ -4,24 +4,44 @@ dotenv.config()
 let path = require('path')
 const express = require('express')
 
-// Start Express
-const app = express()
-
 //API 
 let textapi = new meaning({
     application_key: process.env.API_KEY
   });
 
+// Start Express
+const app = express()
+const port = 2076
 
+const server = app.listen(port, function () {
+    console.log(`Listening on port ${port}!`)
+})
+
+
+//Initialize website
 app.use(express.static('dist'))
 
-console.log(__dirname)
+//Data Storage
 
+let data = {};
+
+// Get Routes
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-// designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.get('/all', function(req, res) {
+    res.send(data)
 })
+
+// Post route - add incoming data to data
+app.post ('addData', addData)
+
+function addData (req, res) {
+    console.log(req.body)
+    // TODO: add entries
+    newEntry = {}
+    data = newEntry
+    res.send(data)
+    console.log(data)
+}
