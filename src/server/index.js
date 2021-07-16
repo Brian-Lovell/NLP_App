@@ -1,11 +1,11 @@
 //Requirments
-const dotenv = require('dotenc')
+const dotenv = require('dotenv')
 dotenv.config()
 let path = require('path')
 const express = require('express')
 
 //API 
-let textapi = new meaning({
+var textapi = new meaning({
     application_key: process.env.API_KEY
   });
 
