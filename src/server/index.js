@@ -1,6 +1,10 @@
 let path = require('path')
 const express = require('express')
 const app = express()
+//API 
+let textapi = new meaning({
+    application_key: "your-key"
+  });
 
 const mockAPIResponse = require('./mockAPI.js')
 
