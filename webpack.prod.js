@@ -4,10 +4,18 @@ const webpack = require('webpack')
 // Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   entry: './src/client/index.js',
+  optimization: {
+    minimizer: [
+      `terser-webpack-plugin`,
+      new CssMinimizerPlugin(),
+    ],
+  },
   output: {
     libraryTarget: 'var',
     library: 'Client'
@@ -24,7 +32,11 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [ 'style-loader', 'css-loader', 'sass-loader' ]
-}
+      },
+      {
+        test: /.s?css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
     ]
   },
   plugins: [
