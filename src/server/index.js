@@ -9,7 +9,7 @@ const fetch = require('node-fetch')
 const FormData= require('form-data')
 
 //API 
-const apiURL = 'https://api.meaningcloud.com/sentiment-2.1/'
+const apiURL = 'https://api.meaningcloud.com/sentiment-2.1'
 
 const form = new FormData()
 form.append("key", process.env.API_KEY)
@@ -54,16 +54,16 @@ app.get('/', function (req, res) {
 
 
 // Post route 
-app.post('/analyze', async function (req, res) {
+app.post('/analyze', function (req, res) {
     formText = req.body.url
     form.append("txt", formText)
     console.log(form)
-    fetch(apiURL, requestOptions)
+    res = fetch(apiURL, requestOptions)
   .then(res => res.text())
   .then(text => console.log(text))   
-  .then(response => ({
-    status: response.status, 
-    body: response.json()
+  .then(res => ({
+    status: res.status, 
+    body: res.json()
   }))
   .then(({ status, body }) => console.log(status, body))
   .catch(error => console.log('error', error));
