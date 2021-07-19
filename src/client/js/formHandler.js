@@ -1,4 +1,6 @@
 function handleSubmit(event) {
+    const textapi = process.env.API_KEY
+    const baseUrl = 'https://api.meaningcloud.com/sentiment-2.1/'
     event.preventDefault()
 
     // check what text was put into the form field
