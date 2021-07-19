@@ -10,7 +10,7 @@ const fetch = require('node-fetch')
 //API 
 const apiURL = 'https://api.meaningcloud.com/sentiment-2.1/'
 
-const formdata = new FormData()
+let formData = new FormData()
 formdata.append("key", process.env.API_KEY)
 // formdata.append("txt", "")
 formdata.append("lang", "en")
