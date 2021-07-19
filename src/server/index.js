@@ -5,7 +5,8 @@ const path = require('path')
 const express = require('express')
 
 //API 
-var textapi = process.env.API_KEY
+const textapi = process.env.API_KEY
+const baseUrl = 'https://api.meaningcloud.com/sentiment-2.1/'
 
 
 // Start Express
