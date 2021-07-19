@@ -1,7 +1,7 @@
 //Requirments
 const dotenv = require('dotenv')
 dotenv.config()
-let path = require('path')
+const path = require('path')
 const express = require('express')
 
 //API 
