@@ -6,7 +6,7 @@ function handleSubmit(event) {
     Client.checkForName(formText)
 
     console.log("::: Form Submitted :::")
-    fetch('https://api.meaningcloud.com/sentiment-2.1')
+    fetch('http://localhost:2076/analyze')
     .then(res => res.json())
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message
