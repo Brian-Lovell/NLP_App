@@ -35,12 +35,15 @@ app.get('/all', function(req, res) {
 })
 
 // Post route - add incoming data to data
-app.post ('addData', addData)
+app.post ('/addData', addData)
 
 function addData (req, res) {
     console.log(req.body)
     // TODO: add entries
-    newEntry = {}
+    newEntry = {
+        irony: req.body.irony,
+        status = req.body.msg,
+    }
     data = newEntry
     res.send(data)
     console.log(data)
