@@ -8,9 +8,18 @@ const cors = require('cors')
 const fetch = require('node-fetch')
 
 //API 
-const apiKey = process.env.API_KEY
 const apiURL = 'https://api.meaningcloud.com/sentiment-2.1/'
 
+const formdata = new FormData()
+formdata.append("key", process.env.API_KEY)
+// formdata.append("txt", "")
+formdata.append("lang", "en")
+
+const requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+}
 
 // Start Express
 const app = express()
@@ -45,23 +54,12 @@ app.get('/', function (req, res) {
 // Post route 
 app.post('/analyze', async function (req, res) {
     formText = req.body.url
-    fetchURL = apiURL+apiKey+'/'+formText
-    res = await fetch(fetchURL, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            date: data.date,
-            temp: data.temp,
-        }),
-    })
-    try {
-        const newData = await res.json()
-        console.log(newData)
-        return newData
-    } catch(error) {
-        console.log("error",error)
-    }
+    formdata.append("txt", formText)
+    fetch(apiURL, requestOptions)
+  .then(response => ({
+    status: response.status, 
+    body: response.json()
+  }))
+  .then(({ status, body }) => console.log(status, body))
+  .catch(error => console.log('error', error));
 })
