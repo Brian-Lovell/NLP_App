@@ -11,15 +11,15 @@ const FormData= require('form-data')
 //API 
 const apiURL = 'https://api.meaningcloud.com/sentiment-2.1'
 
-const form = new FormData()
-form.append("key", process.env.API_KEY)
+const formdata = new FormData()
+formdata.append("key", process.env.API_KEY)
 // formdata.append("txt", "")
-form.append("lang", "en")
-form.append("of","json")
+formdata.append("lang", "en")
+formdata.append("of","json")
 
 const requestOptions = {
     method: 'POST',
-    body: form,
+    body: formdata,
     redirect: 'follow'
 }
 
@@ -56,8 +56,8 @@ app.get('/', function (req, res) {
 // Post route 
 app.post('/analyze', function (req, res) {
     formText = req.body.url
-    form.append("txt", formText)
-    console.log(form)
+    formdata.append("url", formText)
+    console.log(formdata)
     res = fetch(apiURL, requestOptions)
   .then(res => res.text())
   .then(text => console.log(text))   
