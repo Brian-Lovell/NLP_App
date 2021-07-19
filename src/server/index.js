@@ -13,7 +13,7 @@ const baseUrl = 'https://api.meaningcloud.com/sentiment-2.1/'
 const app = express()
 const port = 2076
 
-const server = app.listen(port, function () {
+app.listen(port, function () {
     console.log(`Listening on port ${port}!`)
 })
 
@@ -21,9 +21,9 @@ const server = app.listen(port, function () {
 //Initialize website
 app.use(express.static('dist'))
 
-//Data Storage
+//Store API respone data
 
-let data = {};
+let apiData = {};
 
 // Get Routes
 app.get('/', function (req, res) {
@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 })
 
 app.get('/all', function(req, res) {
-    res.send(data)
+    res.send(apiData)
 })
 
 // Post route - add incoming data to data
@@ -44,7 +44,7 @@ function addData (req, res) {
         irony: req.body.irony,
         status = req.body.msg,
     }
-    data = newEntry
-    res.send(data)
-    console.log(data)
+    apiData = newEntry
+    res.send(apiData)
+    console.log(apiData)
 }
