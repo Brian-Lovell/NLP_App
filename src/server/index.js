@@ -59,10 +59,10 @@ app.post('/analyze', function (req, res) {
     formdata.append("url", formText)
     console.log(formdata)
     res = fetch(apiURL, requestOptions)
-  .then(res => res.text())
-  .then(text => console.log(text))   
+  .then(res => res.json())
+  .then(json => console.log(json))   
   .then(res => ({
-    status: res.status, 
+    status: res.status.msg, 
     body: res.json()
   }))
   .then(({ status, body }) => console.log(status, body))
