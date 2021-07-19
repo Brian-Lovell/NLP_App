@@ -6,19 +6,19 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const fetch = require('node-fetch')
-const FormData = require('form-data')
+const FormData= require('form-data')
 
 //API 
 const apiURL = 'https://api.meaningcloud.com/sentiment-2.1/'
 
-let formData = new FormData()
-formData.append("key", process.env.API_KEY)
+let form = new FormData()
+form.append("key", process.env.API_KEY)
 // formdata.append("txt", "")
-formData.append("lang", "en")
+form.append("lang", "en")
 
 const requestOptions = {
     method: 'POST',
-    body: formData,
+    body: form,
     redirect: 'follow'
 }
 
@@ -55,8 +55,11 @@ app.get('/', function (req, res) {
 // Post route 
 app.post('/analyze', async function (req, res) {
     formText = req.body.url
-    formData.append("txt", formText)
+    form.append("txt", formText)
+    console.log(form)
     fetch(apiURL, requestOptions)
+  .then(res => res.text())
+  .then(text => console.log(text))   
   .then(response => ({
     status: response.status, 
     body: response.json()
