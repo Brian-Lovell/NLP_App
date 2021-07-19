@@ -6,7 +6,14 @@ function handleSubmit(event) {
     Client.checkForName(formText)
 
     console.log("::: Form Submitted :::")
-    fetch('http://localhost:2076/analyze')
+    fetch('http://localhost:2076/analyze', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({url: formText})
+    })
     .then(res => res.json())
     .then(function(res) {
         document.getElementById('results').innerHTML = res.message

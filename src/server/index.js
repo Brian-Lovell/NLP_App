@@ -7,8 +7,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 
 //API 
-const textapi = process.env.API_KEY
-const baseUrl = 'https://api.meaningcloud.com/sentiment-2.1/'
+const apiKey = process.env.API_KEY
+const apiURL = 'https://api.meaningcloud.com/sentiment-2.1/'
 
 
 // Start Express
@@ -39,21 +39,28 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-app.get('/all', function(req, res) {
-    res.send(apiData)
-})
 
-// Post route - add incoming data to data
-app.post ('/addData', addData)
 
-function addData (req, res) {
-    console.log(req.body)
-    // TODO: add entries
-    newEntry = {
-        irony: req.body.irony,
-        status = req.body.msg,
+// Post route 
+app.post('/analyze', async function (req, res) {
+    formText = req.body.url
+    fetchURL = apiURL+apiKey+'/'+formText
+    res = await fetch(fetchURL, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            date: data.date,
+            temp: data.temp,
+        }),
+    })
+    try {
+        const newData = await res.json()
+        console.log(newData)
+        return newData
+    } catch(error) {
+        console.log("error",error)
     }
-    apiData = newEntry
-    res.send(apiData)
-    console.log(apiData)
-}
+})
