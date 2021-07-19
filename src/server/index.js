@@ -5,9 +5,8 @@ let path = require('path')
 const express = require('express')
 
 //API 
-var textapi = new meaning({
-    application_key: process.env.API_KEY
-  });
+var textapi = process.env.API_KEY
+
 
 // Start Express
 const app = express()
