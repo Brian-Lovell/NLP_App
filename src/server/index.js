@@ -11,10 +11,11 @@ const FormData= require('form-data')
 //API 
 const apiURL = 'https://api.meaningcloud.com/sentiment-2.1/'
 
-let form = new FormData()
+const form = new FormData()
 form.append("key", process.env.API_KEY)
 // formdata.append("txt", "")
 form.append("lang", "en")
+form.append("of","json")
 
 const requestOptions = {
     method: 'POST',
