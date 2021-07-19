@@ -19,6 +19,13 @@ app.listen(port, function () {
     console.log(`Listening on port ${port}!`)
 })
 
+//Parse URL-encoded data with querystring library
+app.use(bodyParser.urlencoded({ extended: false }))
+//  Parse application/json
+app.use(bodyParser.json())
+
+// Enable All CORS Requests
+app.use(cors())
 
 //Initialize website
 app.use(express.static('dist'))
