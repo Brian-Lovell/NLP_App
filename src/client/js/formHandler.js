@@ -1,7 +1,8 @@
 function handleSubmit(event) {
     event.preventDefault()
 
-    // check what text was put into the form field
+    // Check what was entered into text field
+    // TODO: Add URL validation
     let formText = document.getElementById('name').value
     Client.checkForName(formText)
 
@@ -16,7 +17,7 @@ function handleSubmit(event) {
     })
     .then(res => res.json())
     .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
+        document.getElementById('results').innerHTML = res.body
     })
 }
 
