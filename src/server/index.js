@@ -51,7 +51,9 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-
+app.get('/getdata', function (req, res) {
+  res.send(apiData)
+})
 
 // Post route 
 app.post('/analyze', function (req, res) {
