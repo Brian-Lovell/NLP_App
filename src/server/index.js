@@ -54,5 +54,10 @@ app.post('/analyze', function (req, res) {
     formdata.append("url", formText)
     // console.log(formdata)
     response = fetch(apiURL, requestOptions)
+    // res.send(response)
+    .then(response => ({
+      status: response.status,
+      body: response.json()
+    }))
     res.send(response)
 })
