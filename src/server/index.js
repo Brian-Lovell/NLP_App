@@ -57,12 +57,12 @@ app.get('/', function (req, res) {
 app.post('/analyze', function (req, res) {
     formText = req.body.url
     formdata.append("url", formText)
-    console.log(formdata)
+    // console.log(formdata)
     res = fetch(apiURL, requestOptions)
-  .then(res => res.json())
-  .then(json => console.log(json))   
+  // .then(res => res.json())
+  // .then(json => console.log(json))   
   .then(res => ({
-    status: res.status.msg, 
+    status: res.status, 
     body: res.json()
   }))
   .then(({ status, body }) => console.log(status, body))
