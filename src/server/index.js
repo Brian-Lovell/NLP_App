@@ -63,6 +63,7 @@ app.post('/analyze', async function (req, res) {
     apiData.score = data.score_tag
     apiData.agreement = data.agreement
     apiData.subjectivity = data.subjectivity
+    apiData.confidence = data.confidence
     apiData.iron = data.irony
     res.send(apiData)
     console.log(apiData)
