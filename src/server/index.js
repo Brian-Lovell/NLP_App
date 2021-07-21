@@ -43,21 +43,27 @@ app.use(cors())
 //Initialize website
 app.use(express.static('dist'))
 
+
+//API endpoint
+apiData = {}
+
 // Get Route
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
 // Post route 
-app.post('/analyze', function (req, res) {
+app.post('/analyze', async function (req, res) {
     formText = req.body.url
     formdata.append("url", formText)
-    // console.log(formdata)
-    response = fetch(apiURL, requestOptions)
-    // res.send(response)
-    .then(response => ({
-      status: response.status,
-      body: response.json()
-    }))
-    res.send(response)
+
+    let response = await fetch(apiURL, requestOptions)
+    let data = await response.json()
+
+    apiData.score = data.score_tag
+    apiData.agreement = data.agreement
+    apiData.subjectivity = data.subjectivity
+    apiData.iron = data.irony
+    res.send(apiData)
+    console.log(apiData)
 })
