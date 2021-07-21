@@ -1,3 +1,4 @@
+// TODO: Add URL regex
 function checkForName(inputText) {
     console.log("::: Running checkForName :::", inputText);
     let names = [
