@@ -6,7 +6,9 @@ function checkForName(inputText) {
 
     if(!(urlRE.test(inputText))) {
         alert("Please enter a URL!")
-        return
+        return false
+    } else {
+        return true
     }
 }
 
