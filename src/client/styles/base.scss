@@ -2,6 +2,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 main {
@@ -9,6 +10,30 @@ main {
 }
 
 section {
+    display:flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+
     max-width: 800px;
     margin: 50px auto;
+    h2 {
+        font-size:x-large;
+        margin: 20px 0 20px 0;
+    }
+
+    h3 {
+        font-size:large;
+    }
+
+    div {
+        margin: 25px;
+    }
+}
+
+.section-form {
+    background-color: rgb(95, 178, 255);
+    border: rgb(95, 178, 255) solid 5px;
+    border-radius: 5%;
 }
