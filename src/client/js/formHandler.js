@@ -1,9 +1,11 @@
+import {checkForName} from './nameChecker'
+
 function handleSubmit(event) {
     event.preventDefault()
 
     // Check what was entered into text field
     let formText = document.getElementById('name').value
-    if (Client.checkForName(formText)) {
+    if (checkForName(formText)) {
         console.log("::: Form Submitted :::")
         fetch('http://localhost:2076/analyze', {
             method: 'POST',
