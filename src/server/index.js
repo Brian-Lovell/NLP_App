@@ -9,15 +9,6 @@ const fetch = require('node-fetch')
 const FormData= require('form-data')
 const { send } = require('process')
 
-//API 
-const apiURL = 'https://api.meaningcloud.com/sentiment-2.1'
-
-const requestOptions = {
-    method: 'POST',
-    body: formdata,
-    redirect: 'follow'
-}
-
 // Start Express
 const app = express()
 const port = 8080
@@ -48,13 +39,22 @@ app.get('/', function (req, res) {
 
 // Post route 
 app.post('/analyze', async function (req, res) {
+    const apiURL = 'https://api.meaningcloud.com/sentiment-2.1'
     const formdata = new FormData()
+
     formdata.append("key", process.env.API_KEY)
     // formdata.append("txt", "")
     formdata.append("lang", "en")
     formdata.append("of","json")
     formText = req.body.url
     formdata.append("url", formText)
+
+    const requestOptions = {
+        method: 'POST',
+        mode: 'cors',
+        body: formdata,
+        redirect: 'follow'
+    }
 
     let response = await fetch(apiURL, requestOptions)
     let data = await response.json()
