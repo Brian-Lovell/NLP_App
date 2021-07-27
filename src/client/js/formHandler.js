@@ -7,7 +7,7 @@ function handleSubmit(event) {
     let formText = document.getElementById('name').value
     if (checkForName(formText)) {
         console.log("::: Form Submitted :::")
-        fetch('http://localhost:8080/analyze', {
+        fetch('http://localhost:2076/analyze', {
             method: 'POST',
             credentials: 'same-origin',
             mode: 'cors',
