@@ -12,12 +12,6 @@ const { send } = require('process')
 //API 
 const apiURL = 'https://api.meaningcloud.com/sentiment-2.1'
 
-const formdata = new FormData()
-formdata.append("key", process.env.API_KEY)
-// formdata.append("txt", "")
-formdata.append("lang", "en")
-formdata.append("of","json")
-
 const requestOptions = {
     method: 'POST',
     body: formdata,
@@ -54,6 +48,11 @@ app.get('/', function (req, res) {
 
 // Post route 
 app.post('/analyze', async function (req, res) {
+    const formdata = new FormData()
+    formdata.append("key", process.env.API_KEY)
+    // formdata.append("txt", "")
+    formdata.append("lang", "en")
+    formdata.append("of","json")
     formText = req.body.url
     formdata.append("url", formText)
 
